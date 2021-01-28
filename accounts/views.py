@@ -24,12 +24,12 @@ def register(request):
                     messages.error(request, "That email is being used")
                     return redirect("register")
                 else:
-                    # looks good
                     user = User.objects.create_user(username=username, password=password, email=email, first_name=first_name, last_name=last_name)
                     # login after register
                     # auth.login(request, user)
                     # messages.success(request, 'You are now logged in')
                     # return redirect('index')
+                    
                     user.save()
                     messages.success(request, 'You are now registered and can log in')
                     return redirect('login')
@@ -57,7 +57,10 @@ def login(request):
         return render(request, 'accounts/login.html')
 
 def logout(request):
-    return redirect('index')
+    if request.method == 'POST':
+        auth.logout(request)
+        messages.success(request, "You are now logged out")
+        return redirect('index')
     
 def dashboard(request):
     return render(request, 'accounts/dashboard.html')
