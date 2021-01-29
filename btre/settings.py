@@ -145,3 +145,9 @@ from django.contrib.messages import constants as messages
 MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 }
+
+# Email Setup
+EMAIL_HOST = 'smtp.mailtrap.io'
+EMAIL_HOST_USER = '1152659940980a'
+EMAIL_HOST_PASSWORD = '7e4cc912abc61a'
+EMAIL_PORT = '2525'
